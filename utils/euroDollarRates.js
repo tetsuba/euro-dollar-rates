@@ -8,22 +8,22 @@ let COUNT = 0
 const data = []
 
 export  default async function getEuroDollarRates() {
+
   const symbol = symbols[COUNT]
   const url = BASE_URL.replace('{symbol}', symbol)
   const res = await axios(url)
   const $ = cheerio.load(res.data)
   const price = $('.intraday__price > .value').text()
-  const date = $('.intraday__close thead th').text()
-  const settlementPrice = $('.intraday__close tbody td').text()
+  const text = $('.company__name').text()
 
-  data.push({
-    symbol,
-    price,
-    settlementPrice: {
-      date: date.replace('Settlement Price ', ''),
-      price: settlementPrice
-    }
-  })
+  if (price !== '') {
+    data.push({
+      symbol,
+      price,
+      text: text.replace('Eurodollar 3 Month ', '')
+    })
+  }
+
 
   if (COUNT < EOF) {
     COUNT++

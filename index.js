@@ -1,4 +1,5 @@
 import express from 'express'
+import cheerio from 'cheerio'
 import getEuroDollarRates from './utils/euroDollarRates.js'
 
 const app = express()
@@ -9,8 +10,16 @@ app.get('/', (req, res) => {
 })
 
 app.get('/euro-dollar-rates', async (req, res) => {
-  const json = await getEuroDollarRates()
-  res.json(json)
+  const data = await getEuroDollarRates()
+  const template = `
+    <table>
+        <tr><th>Date</th><th>Price</th></tr>
+        ${data.map((data) => `<tr><td>${data.text}</td><td>${data.price}</td></tr>`)}
+    </table>
+  `
+
+  const $ = cheerio.load(template);
+  res.send($.html())
 })
 
 app.listen(port, () => {
