@@ -1,0 +1,7 @@
+{
+  "transform": {
+    "\\.[jt]sx?$": "babel-jest"
+  },
+  "testMatch": ["**/?(*.)+(spec|test).js"],
+  "collectCoverageFrom": ["src/**/*.js", "!src/**/__tests__/**"]
+}
