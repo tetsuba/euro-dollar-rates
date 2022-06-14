@@ -2,7 +2,7 @@
 function addTableRow(index) {
   return `
     <tr>
-        <td><a href="http://">edm${index} (edm${index})</a></td>
+        <td><a href="http://">EDM${index} (EDM${index})</a></td>
         <td>EXCBT</td>
         <td>UK</td>
     </tr>
@@ -45,12 +45,12 @@ export const futuresListTemplate = `
     <table class="table-condensed">
       <tbody>
           <tr>
-              <td><a href="http://">edm22 (edm22)</a></td>
+              <td><a href="http://">EDM22 (edm22)</a></td>
               <td>EXCBT</td>
               <td>UK</td>
           </tr>
           <tr>
-              <td><a href="http://">edm23 (edm23)</a></td>
+              <td><a href="http://">EDM23 (edm23)</a></td>
               <td>EXCBT</td>
               <td>UK</td>
           </tr>

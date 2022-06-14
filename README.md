@@ -1,6 +1,6 @@
-# Financial Scrapper API (FSA)
+# Fin Scraper
 
-Scrapping data and outputting an api 
+Scraping data 
 
 
 

@@ -3,5 +3,5 @@
     "\\.[jt]sx?$": "babel-jest"
   },
   "testMatch": ["**/?(*.)+(spec|test).js"],
-  "collectCoverageFrom": ["src/**/*.js", "!src/**/__tests__/**"]
+  "collectCoverageFrom": ["server/**/*.js", "!server/**/__tests__/**"]
 }

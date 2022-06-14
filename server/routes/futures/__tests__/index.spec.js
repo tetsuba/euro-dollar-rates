@@ -49,6 +49,20 @@ describe('api/futures', () => {
           })
           .catch(err => done(err))
       })
+      test('responds with filter json data',(done) => {
+        fs.existsSync.mockReturnValueOnce(true)
+        fs.readFileSync.mockResolvedValueOnce(JSON.stringify(mockJsonFuturesList))
+
+        request(app)
+          .get('/api/futures/list?filter=adm')
+          .expect('Content-Type', /json/)
+          .expect(200)
+          .then(res => {
+            expect(res.body.list).toHaveLength(1)
+            done();
+          })
+          .catch(err => done(err))
+      })
     })
     describe('#ERROR', () => {
       test('Internal server error: Reading a file failed.',(done) => {
