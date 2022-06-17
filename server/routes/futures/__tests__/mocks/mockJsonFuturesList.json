@@ -2,35 +2,24 @@
   "date": "",
   "list": [
     {
-      "name": "edm22 (ADM22)",
-      "link": "http://",
-      "exchange": "EXCBT",
-      "country": "UK"
+      "name": "EDM22",
+      "link": "/investing/future/EDM22"
     },
     {
-      "name": "edm23 (EDM23)",
-      "link": "http://",
-      "exchange": "EXCBT",
-      "country": "UK"
+      "name": "EDM23",
+      "link": "/investing/future/EDM23"
     },
     {
-      "name": "edm24 (EDM24)",
-      "link": "http://",
-      "exchange": "EXCBT",
-      "country": "UK"
+      "name": "EDM24",
+      "link": "/investing/future/EDM24"
     },
     {
-      "name": "edm25 (EDM25)",
-      "link": "http://",
-      "exchange": "EXCBT",
-      "country": "UK"
+      "name": "EDM25",
+      "link": "/investing/future/EDM25"
     },
     {
-      "name": "edm26 (EDM26)",
-      "link": "http://",
-      "exchange": "EXCBT",
-      "country": "UK"
+      "name": "EDM26",
+      "link": "/investing/future/EDM26"
     }
   ]
-
 }

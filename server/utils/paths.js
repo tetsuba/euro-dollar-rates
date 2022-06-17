@@ -8,7 +8,7 @@ export default {
   FILE: {
     FUTURES: {
       LIST: resolve('server/routes/futures' + LIST),
-      SYMBOL: resolve('server/routes/futures/json/')
+      SYMBOL: resolve('server/routes/futures/json/{symbol}.json')
     }
   },
   URL: {

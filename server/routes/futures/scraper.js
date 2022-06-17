@@ -33,11 +33,59 @@ export async function scrapeFuturesTableRows(count) {
 
   return tableRows
     .map(function () {
+      const name = $(this).find('td > a').text().match(/\((.+)\)/)[1]
       return {
-        name: $(this).find('td > a').text(),
-        link: $(this).find('td > a').attr('href'),
-        exchange: $($(this).find('td')[1]).text(),
-        country: $($(this).find('td')[2]).text(),
+        name,
+        link: $(this).find('td > a').attr('href')
       }
     }).toArray()
+}
+
+async function scrapeFuturePage(link, name) {
+  const $ = await getPage(PATHS.URL.BASE + link)
+
+  return {
+    symbol: name,
+    name: $('.company__name').text(),
+    price: $('.intraday__price > .value').text(),
+    link
+  }
+}
+
+// EXPORTED Functions ----------------------------------------
+
+export async function scrapeFuturesList() {
+  const LPN = await scrapePaginationLastPageNumber()
+  const promises = []
+  for (let i = 1; i <= LPN; i++) {
+    promises.push(scrapeFuturesTableRows(i))
+  }
+
+  try {
+    const data = await Promise.all(promises);
+
+    return {
+      date: new Date().toLocaleDateString(),
+      list: data.flat()
+    }
+  } catch (e) {
+    throw e
+  }
+}
+
+export async function scrapeFuturePages(list) {
+  const promises = []
+  list.forEach(({link, name}) => {
+    promises.push(scrapeFuturePage(link, name))
+  })
+
+  try {
+    const data = await Promise.all(promises)
+    return {
+      date: new Date().toLocaleDateString(),
+      list: data
+    }
+  } catch (e) {
+    throw e
+  }
 }

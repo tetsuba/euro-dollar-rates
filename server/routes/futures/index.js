@@ -1,18 +1,15 @@
 import express from 'express'
-import { deleteFuturesListHandler, getFuturesListHandler, updateFuturesListHandler, getFutureRatesHandler, getFutureGroupsHandler } from './handlers.js'
+import { deleteFuturesListHandler, getFuturesListHandler, updateFuturesListHandler, getFutureHandler } from './handlers.js'
 const Router = express.Router()
 
 Router.get('/api/futures/list', getFuturesListHandler)
 /**
  * @swagger
- * /api/futures/list?filter=ED:
+ * /api/futures/list:
  *   get:
  *     description: Gets a list of futures
  *     tags:
  *       - futures
- *     parameters:
- *       - in: query
- *         name: filter
  *     responses:
  *       200:
  *         description: successful operation
@@ -35,12 +32,6 @@ Router.get('/api/futures/list', getFuturesListHandler)
  *                        link:
  *                          type: string
  *                          example: http:www.example.com
- *                        exchange:
- *                          type: string
- *                          example: XCME
- *                        country:
- *                          type: string
- *                          example: UK
  *
  *       500:
  *         description: "Internal server error"
@@ -114,16 +105,21 @@ Router.get('/api/futures/list/delete', deleteFuturesListHandler)
  *                   type: string
  */
 
-Router.get('/api/futures/list/groups', getFutureGroupsHandler)
 
-Router.get('/api/futures/rates', getFutureRatesHandler)
+Router.get('/api/future/:symbol', getFutureHandler)
 /**
  * @swagger
- * /api/futures/rates/{symbol}:
+ * /api/future/{symbol}:
  *   get:
- *     description: Gets a list of future rates
+ *     description: Gets data on a specific future
+ *     summary: "Find future by symbol"
  *     tags:
- *       - futures
+ *       - future
+ *     parameters:
+ *       - in: path
+ *         name: symbol
+ *         required: true
+ *         type: string
  *     responses:
  *       200:
  *         description: successful operation
@@ -132,8 +128,26 @@ Router.get('/api/futures/rates', getFutureRatesHandler)
  *             schema:
  *               type: object
  *               properties:
- *                 message:
+ *                 date:
  *                   type: string
+ *                   example: 01/01/2022
+ *                 list:
+ *                   type: array
+ *                   items:
+ *                      type: object
+ *                      properties:
+ *                        name:
+ *                          type: string
+ *                          example: EuroDollar 3 Months
+ *                        link:
+ *                          type: string
+ *                          example: http:www.example.com
+ *                        symbol:
+ *                          type: string
+ *                          example: ED
+ *                        price:
+ *                          type: string
+ *                          example: 80
  *
  *       500:
  *         description: "Internal server error"
@@ -146,14 +160,4 @@ Router.get('/api/futures/rates', getFutureRatesHandler)
  *                   type: string
  */
 
-
 export default Router
-
-
-// app.get('/api/rates/:symbol', async (req, res) => {
-//   const json = await getRates(req.params.symbol.toUpperCase())
-//   res.json(json)
-// })
-
-
-

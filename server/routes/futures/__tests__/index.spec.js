@@ -4,8 +4,9 @@ import request from 'supertest'
 import app from '../../index.js'
 import { buildFuturesListTemplate } from './mocks/htmlMocks.js'
 import { InternalServerErrorCode } from '../../../errors/error-codes.js'
-import { mockFuturesList } from './mocks/mockData.js'
+import { mockFutureEDList, mockFuturesList } from './mocks/mockData.js'
 import mockJsonFuturesList from './mocks/mockJsonFuturesList.json'
+import mockJsonFutureED from './mocks/mockJsonFutureED.json'
 
 jest.mock("axios")
 jest.mock('fs')
@@ -15,7 +16,7 @@ describe('api/futures', () => {
     jest.clearAllMocks()
   })
   describe('/api/futures/list', () => {
-    const expectedKeys = ['exchange', 'link', 'name', 'country'].sort()
+    const expectedKeys = ['link', 'name'].sort()
 
     describe('#SUCCESS', () => {
       test('responds with json data, scraped from external website', (done) => {
@@ -45,20 +46,6 @@ describe('api/futures', () => {
             expect(res.body.list).toHaveLength(5)
             expect(Object.keys(res.body.list[0]).sort()).toEqual(expectedKeys)
             mockFuturesList.forEach(({url}) => expect(axios.get).not.toHaveBeenCalledWith(url))
-            done();
-          })
-          .catch(err => done(err))
-      })
-      test('responds with filter json data',(done) => {
-        fs.existsSync.mockReturnValueOnce(true)
-        fs.readFileSync.mockResolvedValueOnce(JSON.stringify(mockJsonFuturesList))
-
-        request(app)
-          .get('/api/futures/list?filter=adm')
-          .expect('Content-Type', /json/)
-          .expect(200)
-          .then(res => {
-            expect(res.body.list).toHaveLength(1)
             done();
           })
           .catch(err => done(err))
@@ -275,5 +262,46 @@ describe('api/futures', () => {
     })
 
 
+  })
+  describe('/api/future/{symbol}', () => {
+    const expectedKeys = ['link', 'name', 'price', 'symbol'].sort()
+
+    describe('#SUCCESS', () => {
+      test('responds with json data, filtered by symbol', (done) => {
+        fs.existsSync.mockReturnValueOnce(false)
+        fs.existsSync.mockReturnValueOnce(true)
+        fs.readFileSync.mockResolvedValueOnce(JSON.stringify(mockJsonFuturesList))
+        mockFutureEDList.forEach(({template}) => axios.get.mockResolvedValueOnce({ data: template}))
+
+        request(app)
+          .get('/api/future/ED')
+          .expect('Content-Type', /json/)
+          .expect(200)
+          .then(res => {
+            expect(res.body.list).toHaveLength(5)
+            expect(Object.keys(res.body.list[0]).sort()).toEqual(expectedKeys)
+            mockFutureEDList.forEach(({url}) => expect(axios.get).toHaveBeenCalledWith(url))
+            done()
+          })
+          .catch(err => done(err))
+      })
+      test('responds with saved json data', (done) => {
+        fs.existsSync.mockReturnValueOnce(true)
+        fs.readFileSync.mockResolvedValueOnce(JSON.stringify(mockJsonFutureED))
+
+        request(app)
+          .get('/api/future/ED')
+          .expect('Content-Type', /json/)
+          .expect(200)
+          .then(res => {
+            expect(res.body.list).toHaveLength(5)
+            expect(Object.keys(res.body.list[0]).sort()).toEqual(expectedKeys)
+            done()
+          })
+          .catch(err => done(err))
+      })
+    })
+    // Note: these errors are the same as "/api/futures/list"
+    describe('#ERROR', () => {})
   })
 })

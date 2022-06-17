@@ -1,0 +1,35 @@
+{
+  "date": "",
+  "list": [
+    {
+      "name": "Euro Dollar 3 Month June 2022",
+      "link": "/investing/future/EDM22",
+      "price": "80",
+      "symbol": "EDM22"
+    },
+    {
+      "name": "Euro Dollar 3 Month June 2023",
+      "link": "/investing/future/EDM23",
+      "price": "80",
+      "symbol": "EDM23"
+    },
+    {
+      "name": "Euro Dollar 3 Month June 2024",
+      "link": "/investing/future/EDM24",
+      "price": "80",
+      "symbol": "EDM24"
+    },
+    {
+      "name": "Euro Dollar 3 Month June 2025",
+      "link": "/investing/future/EDM25",
+      "price": "80",
+      "symbol": "EDM25"
+    },
+    {
+      "name": "Euro Dollar 3 Month June 2026",
+      "link": "/investing/future/EDM26",
+      "price": "80",
+      "symbol": "EDM26"
+    }
+  ]
+}
