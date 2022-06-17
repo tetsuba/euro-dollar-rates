@@ -1,5 +1,10 @@
 import express from 'express'
-import { deleteFuturesListHandler, getFuturesListHandler, updateFuturesListHandler, getFutureHandler } from './handlers.js'
+import {
+    deleteFuturesListHandler,
+    getFuturesListHandler,
+    updateFuturesListHandler,
+    getFutureHandler,
+} from './handlers.js'
 const Router = express.Router()
 
 Router.get('/api/futures/list', getFuturesListHandler)
@@ -43,7 +48,6 @@ Router.get('/api/futures/list', getFuturesListHandler)
  *                 message:
  *                   type: string
  */
-
 
 Router.get('/api/futures/list/update', updateFuturesListHandler)
 /**
@@ -104,7 +108,6 @@ Router.get('/api/futures/list/delete', deleteFuturesListHandler)
  *                 message:
  *                   type: string
  */
-
 
 Router.get('/api/future/:symbol', getFutureHandler)
 /**

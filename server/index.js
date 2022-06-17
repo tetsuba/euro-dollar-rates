@@ -1,5 +1,5 @@
 import app from './routes/index.js'
-import apiDocs from './routes/docs/index.js';
+import apiDocs from './routes/docs/index.js'
 
 const port = process.env.PORT || 3001
 
@@ -7,5 +7,5 @@ const port = process.env.PORT || 3001
 app.use(apiDocs)
 
 app.listen(port, () => {
-  console.log(`Listening on port ${port}`)
+    console.log(`Listening on port ${port}`)
 })

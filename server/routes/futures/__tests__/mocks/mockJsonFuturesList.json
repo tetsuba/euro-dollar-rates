@@ -1,25 +1,25 @@
 {
-  "date": "",
-  "list": [
-    {
-      "name": "EDM22",
-      "link": "/investing/future/EDM22"
-    },
-    {
-      "name": "EDM23",
-      "link": "/investing/future/EDM23"
-    },
-    {
-      "name": "EDM24",
-      "link": "/investing/future/EDM24"
-    },
-    {
-      "name": "EDM25",
-      "link": "/investing/future/EDM25"
-    },
-    {
-      "name": "EDM26",
-      "link": "/investing/future/EDM26"
-    }
-  ]
+    "date": "",
+    "list": [
+        {
+            "name": "EDM22",
+            "link": "/investing/future/EDM22"
+        },
+        {
+            "name": "EDM23",
+            "link": "/investing/future/EDM23"
+        },
+        {
+            "name": "EDM24",
+            "link": "/investing/future/EDM24"
+        },
+        {
+            "name": "EDM25",
+            "link": "/investing/future/EDM25"
+        },
+        {
+            "name": "EDM26",
+            "link": "/investing/future/EDM26"
+        }
+    ]
 }

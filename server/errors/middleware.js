@@ -3,12 +3,11 @@
 /* Note:
  * Removing the next argument breaks middleware from running
  *  */
-export function errorHandler (error, request, response, next) {
-  const { name, statusCode, message } = error
-  let json = {name, statusCode, message}
-  response.status(statusCode).json(json)
+export function errorHandler(error, request, response, next) {
+    const { name, statusCode, message } = error
+    let json = { name, statusCode, message }
+    response.status(statusCode).json(json)
 }
-
 
 // const errorLogger = (err, req, res, next) => {
 //   console.error('\x1b[31m', err) // adding some color to our logs

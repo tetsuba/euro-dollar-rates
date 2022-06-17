@@ -1,6 +1,5 @@
-
 function addTableRow(index) {
-  return `
+    return `
     <tr>
         <td><a href="http://">EDM${index} (EDM${index})</a></td>
         <td>EXCBT</td>
@@ -10,15 +9,18 @@ function addTableRow(index) {
 }
 
 function addPagination(arr) {
-  return arr.length > 0 && `
+    return (
+        arr.length > 0 &&
+        `
     <ul class="pagination">
         ${arr.map((num) => `<li><a>${num}</a></li>`)}
     </ul>
   `
+    )
 }
 
 function buildTable(rows) {
-  return `
+    return `
     <table class="table-condensed">
       <tbody>
         ${rows.map(addTableRow)}
@@ -28,7 +30,7 @@ function buildTable(rows) {
 }
 
 export function buildFuturesListTemplate(rows, pagination) {
-  return `
+    return `
       <div>
         <table class="table-condensed">
           <tbody>
@@ -41,7 +43,7 @@ export function buildFuturesListTemplate(rows, pagination) {
 }
 
 export function buildFutureTemplate(name, price) {
-  return `
+    return `
       <div>
         <div class="table-condensed">${name}</div>
         <div class="intraday__price">
@@ -50,5 +52,3 @@ export function buildFutureTemplate(name, price) {
       </div>
   `
 }
-
-

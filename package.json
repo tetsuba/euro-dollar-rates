@@ -1,5 +1,5 @@
 {
-  "name": "euro_dollar_rates",
+  "name": "fin-scraper",
   "version": "1.0.0",
   "description": "",
   "main": "server/index.js",
@@ -13,7 +13,8 @@
     "start": "node server/index.js",
     "client": "npm start --prefix client",
     "server": "node server/index.js",
-    "dev": "npm run server & npm run client"
+    "dev": "npm run server & npm run client",
+    "format": "prettier --write ./**/*"
   },
   "keywords": [],
   "author": "",
@@ -29,6 +30,7 @@
     "@babel/preset-env": "^7.18.0",
     "babel-jest": "^28.1.0",
     "jest": "^28.1.0",
+    "prettier": "2.7.1",
     "supertest": "^6.2.3"
   }
 }
