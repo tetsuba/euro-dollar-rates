@@ -134,6 +134,9 @@ Router.get('/api/future/:symbol', getFutureHandler)
  *                 date:
  *                   type: string
  *                   example: 01/01/2022
+ *                 name:
+ *                   type: string
+ *                   example: EuroDollar 3 Months
  *                 list:
  *                   type: array
  *                   items:
@@ -142,15 +145,18 @@ Router.get('/api/future/:symbol', getFutureHandler)
  *                        name:
  *                          type: string
  *                          example: EuroDollar 3 Months
- *                        link:
- *                          type: string
- *                          example: http:www.example.com
  *                        symbol:
  *                          type: string
  *                          example: ED
  *                        price:
  *                          type: string
  *                          example: 80
+ *                        month:
+ *                          type: string
+ *                          example: 6
+ *                        year:
+ *                          type: string
+ *                          example: 2022
  *
  *       500:
  *         description: "Internal server error"
