@@ -3,7 +3,7 @@ import fs from 'fs'
 import request from 'supertest'
 import app from '../../index.js'
 import { buildFuturesListTemplate } from './mocks/htmlMocks.js'
-import { InternalServerErrorCode } from '../../../errors/error-codes.js'
+import { ClientErrorCode, InternalServerErrorCode } from '../../../errors/error-codes.js'
 import { mockFutureEDList, mockFuturesList } from './mocks/mockData.js'
 import mockJsonFuturesList from './mocks/mockJsonFuturesList.json'
 import mockJsonFutureED from './mocks/mockJsonFutureED.json'
@@ -233,10 +233,11 @@ describe('api/futures', () => {
         })
         describe('#ERROR', () => {
             test('Internal server error: Saving/writing a file failed.', (done) => {
-                mockFuturesList.forEach(({ template }) =>
+              // fs.existsSync.mockReturnValueOnce(false)
+              mockFuturesList.forEach(({ template }) =>
                     axios.get.mockResolvedValueOnce({ data: template })
                 )
-                fs.existsSync.mockReturnValueOnce(false)
+
                 fs.writeFileSync.mockRejectedValueOnce('WRITE')
 
                 request(app)
@@ -254,8 +255,6 @@ describe('api/futures', () => {
             })
             test('Internal server error: Page not found', (done) => {
                 axios.get.mockRejectedValueOnce('Page not found.')
-                fs.existsSync.mockReturnValueOnce(false)
-
                 request(app)
                     .get('/api/futures/list/update')
                     .expect('Content-Type', /json/)
@@ -270,7 +269,6 @@ describe('api/futures', () => {
                     .catch((err) => done(err))
             })
             test('Internal server error: Pagination number not found', (done) => {
-                fs.existsSync.mockReturnValueOnce(false)
                 axios.get.mockResolvedValueOnce({
                     data: buildFuturesListTemplate([], []),
                 })
@@ -289,7 +287,6 @@ describe('api/futures', () => {
                     .catch((err) => done(err))
             })
             test('Internal server error: Table not found', (done) => {
-                fs.existsSync.mockReturnValueOnce(false)
                 axios.get.mockResolvedValueOnce({
                     data: buildFuturesListTemplate([], ['1']),
                 })
@@ -313,10 +310,10 @@ describe('api/futures', () => {
         })
     })
     describe('/api/future/{symbol}', () => {
-        const expectedKeys = ['link', 'name', 'price', 'symbol'].sort()
-
+        const expectedKeys = ['name', 'price', 'symbol', 'month', 'year'].sort()
         describe('#SUCCESS', () => {
             test('responds with json data, filtered by symbol', (done) => {
+                mockJsonFuturesList.date = new Date().toLocaleDateString()
                 fs.existsSync.mockReturnValueOnce(false)
                 fs.existsSync.mockReturnValueOnce(true)
                 fs.readFileSync.mockResolvedValueOnce(
@@ -362,7 +359,30 @@ describe('api/futures', () => {
                     .catch((err) => done(err))
             })
         })
-        // Note: these errors are the same as "/api/futures/list"
-        describe('#ERROR', () => {})
+        describe('#ERROR...', () => {
+          test('Client error: incorrect symbol', (done) => {
+            fs.existsSync
+              .mockReturnValueOnce(false)
+              .mockReturnValueOnce(true)
+
+            fs.readFileSync
+              .mockResolvedValueOnce(JSON.stringify(mockJsonFuturesList))
+
+            axios.get.mockRejectedValueOnce('Page not found.')
+
+            request(app)
+              .get('/api/future/AL')
+              .expect('Content-Type', /json/)
+              .expect(ClientErrorCode)
+              .then((res) => {
+                expect(res.body.name).toEqual('Client error')
+                expect(res.body.message).toEqual(
+                  'Parameter Error: Missing or incorrect symbol (AL)'
+                )
+                done()
+              })
+              .catch((err) => done(err))
+          })
+        })
     })
 })

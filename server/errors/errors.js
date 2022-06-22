@@ -14,7 +14,7 @@ export class ClientError extends Error {
 export class ParamError extends ClientError {
     constructor(message) {
         super(message)
-        this.message = `Missing parameter "${message}"`
+        this.message = `Parameter Error: ${message}`
     }
 }
 

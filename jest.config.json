@@ -3,6 +3,6 @@
     "\\.[jt]sx?$": "babel-jest"
   },
   "testMatch": ["**/?(*.)+(spec|test).js"],
-  "collectCoverageFrom": ["server/**/*.js", "!server/**/__tests__/**"],
+  "collectCoverageFrom": ["server/**/*.js", "!server/**/__tests__/**", "!server/index.js", "!server/routes/docs/*"],
   "testPathIgnorePatterns": ["client"]
 }

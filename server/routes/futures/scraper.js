@@ -20,7 +20,7 @@ export async function scrapePaginationLastPageNumber() {
 
     if (numOfPages === '') throw new ScraperError('Pagination number not found')
 
-    return numOfPages.split('-').reverse()[0].match(/\d+/)[0]
+    return ~~numOfPages.split('-').reverse()[0].match(/\d+/)[0]
 }
 
 export async function scrapeFuturesTableRows(count) {
@@ -43,9 +43,8 @@ export async function scrapeFuturesTableRows(count) {
         .toArray()
 }
 
-async function scrapeFuturePage(link, name) {
+export async function scrapeFuturePage({ link, name }) {
     const $ = await getPage(PATHS.URL.BASE + link)
-
     return {
         symbol: name,
         name: $('.company__name').text(),
@@ -54,39 +53,24 @@ async function scrapeFuturePage(link, name) {
     }
 }
 
-// EXPORTED Functions ----------------------------------------
-
 export async function scrapeFuturesList() {
-    const LPN = await scrapePaginationLastPageNumber()
-    const promises = []
-    for (let i = 1; i <= LPN; i++) {
-        promises.push(scrapeFuturesTableRows(i))
-    }
-
     try {
-        const data = await Promise.all(promises)
-
-        return {
-            date: new Date().toLocaleDateString(),
-            list: data.flat(),
-        }
+        const lastPage = await scrapePaginationLastPageNumber()
+        const promises = Array(lastPage)
+          .fill(0)
+          .map((_, i) => i+1)
+          .map(scrapeFuturesTableRows)
+        const list = await Promise.all(promises)
+        return list.flat()
     } catch (e) {
         throw e
     }
 }
 
 export async function scrapeFuturePages(list) {
-    const promises = []
-    list.forEach(({ link, name }) => {
-        promises.push(scrapeFuturePage(link, name))
-    })
-
     try {
-        const data = await Promise.all(promises)
-        return {
-            date: new Date().toLocaleDateString(),
-            list: data,
-        }
+        const promises = list.map(scrapeFuturePage)
+        return await Promise.all(promises)
     } catch (e) {
         throw e
     }

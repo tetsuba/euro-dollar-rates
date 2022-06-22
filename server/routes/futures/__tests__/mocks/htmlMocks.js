@@ -1,7 +1,7 @@
 function addTableRow(index) {
     return `
     <tr>
-        <td><a href="http://">EDM${index} (EDM${index})</a></td>
+        <td><a href="/investing/future/EDM${index}">EDM${index} (EDM${index})</a></td>
         <td>EXCBT</td>
         <td>UK</td>
     </tr>
@@ -45,7 +45,7 @@ export function buildFuturesListTemplate(rows, pagination) {
 export function buildFutureTemplate(name, price) {
     return `
       <div>
-        <div class="table-condensed">${name}</div>
+        <div class="company__name">${name}</div>
         <div class="intraday__price">
             <div class="value">${price}</div>
         </div>

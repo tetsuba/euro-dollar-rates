@@ -22,7 +22,7 @@ export default function App() {
                     <Route path="market-watch/">
                         <Route path="" element={<MarketWatch />} />
                         <Route path="futures" element={<Futures />} />
-                        <Route path="futures/:id" element={<Future />} />
+                        <Route path="futures/:symbol" element={<Future />} />
                     </Route>
                 </Routes>
             </Router>

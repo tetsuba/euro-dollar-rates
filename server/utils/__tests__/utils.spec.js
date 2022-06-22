@@ -3,7 +3,7 @@ import { readJsonFile, saveJsonFile } from '../utils.js'
 
 jest.mock('fs')
 
-describe.skip('utils', () => {
+describe('utils', () => {
     beforeEach(() => {
         jest.clearAllMocks()
     })
@@ -47,5 +47,4 @@ describe.skip('utils', () => {
             )
         })
     })
-    describe('deleteFile()', () => {})
 })
