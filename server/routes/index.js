@@ -9,4 +9,7 @@ app.use(futures)
 // middleware
 app.use(errorHandler)
 
+//
+app.use(express.static("build"))
+
 export default app

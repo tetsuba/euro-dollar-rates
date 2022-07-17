@@ -1,8 +1,8 @@
 import React from 'react'
-import axios from 'axios'
+import { getFuture } from '../../utils/service'
+import { withRouter } from '../../HOC/withRouter'
 import BreadCrumbs from '../../components/BreadCrumbs/BreadCrumbs'
-import { withRouter } from '../../HOC/withRouter';
-import { convertFutureStringToObject } from './utils';
+import { convertFutureStringToObject } from './utils'
 
 class Future extends React.Component {
 
@@ -11,11 +11,7 @@ class Future extends React.Component {
     }
 
     async componentDidMount() {
-        const future = await axios.get(
-          'http://localhost:3000/api/future/' + this.props.params.symbol
-        )
-
-
+        const future = await getFuture(this.props.params.symbol)
 
         this.setState({
             future: future.data,

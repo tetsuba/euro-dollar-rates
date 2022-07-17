@@ -1,5 +1,5 @@
 import React from 'react'
-import axios from 'axios'
+import { getFuturesList } from '../../utils/service'
 import SearchBox from '../../components/SearchBox/SearchBox'
 import FilterList from '../../components/List/FilterList'
 import BreadCrumbs from '../../components/BreadCrumbs/BreadCrumbs'
@@ -15,9 +15,7 @@ export default class Futures extends React.Component {
     }
 
     async componentDidMount() {
-        const futures = await axios.get(
-            'http://localhost:3000/api/futures/list'
-        )
+        const futures = await getFuturesList()
         const list = futures.data.list.map(({ name }) => name)
         this.setState({
             list,
