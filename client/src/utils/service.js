@@ -1,7 +1,6 @@
 import axios from 'axios'
-const DEFAULT_PORT = 3001
-const PORT = process.env.PORT || process.env.REACT_APP_PORT || DEFAULT_PORT
-const BASE_URL = `http://localhost:${PORT}/api/`
+
+const BASE_URL = `${window.location.origin}/api/`
 const FUTURE_URL = `${BASE_URL}future/`
 const FUTURES_LIST_URL = `${BASE_URL}futures/list`
 
