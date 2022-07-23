@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchBox rendered 1`] = `
+<DocumentFragment>
+  <div
+    class="input-group input-group-lg"
+  >
+    <span
+      class="input-group-text"
+      id="inputGroup-sizing-lg"
+    >
+      Search Box
+    </span>
+    <input
+      aria-describedby="inputGroup-sizing-lg"
+      aria-label="Sizing example input"
+      class="form-control"
+      type="text"
+      value=""
+    />
+  </div>
+</DocumentFragment>
+`;
