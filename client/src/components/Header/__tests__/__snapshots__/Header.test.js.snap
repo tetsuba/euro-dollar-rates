@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header rendered 1`] = `
+<DocumentFragment>
+  <div
+    class="row mt-3"
+  >
+    <div
+      class="h4 pb-2 mb-4 text-secondary border-bottom border-secondary"
+    >
+      Fin-Scraper
+    </div>
+  </div>
+</DocumentFragment>
+`;

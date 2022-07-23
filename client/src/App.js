@@ -1,20 +1,16 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import './App.css'
 
 import Home from './screens/Home/Home'
 import MarketWatch from './screens/MarketWatch'
 import Futures from './screens/MarketWatch/Futures'
 import Future from './screens/MarketWatch/Future'
+import Header from './components/Header/Header'
 
 export default function App() {
     return (
         <div className="container">
-            <div className="row mt-3">
-                <div className="h4 pb-2 mb-4 text-secondary border-bottom border-secondary">
-                    Fin-Scraper
-                </div>
-            </div>
+            <Header />
             <Router>
                 <Routes>
                     <Route path="*" element={<h1>ERROR PAGE</h1>} />
