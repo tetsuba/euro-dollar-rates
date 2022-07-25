@@ -5,24 +5,19 @@ orbs:
 
 jobs:
   build_and_test: # this can be any name you choose
+    only-on-branch: master
     executor: node/default # use the default executor defined within the orb
     steps:
       - checkout
       - node/install-packages:
           pkg-manager: npm
-
-      - when:
-          condition:
-            equal: [ master, << pipeline.git.branch >> ]
-          steps:
-            - run:
-                command: npm run test
-                name: Run tests
-
-            - persist_to_workspace:
-                root: ~/project
-                paths:
-                  - .
+      - run:
+          command: npm run test
+          name: Run tests
+      - persist_to_workspace:
+          root: ~/project
+          paths:
+            - .
 
 workflows:
   build_and_test:
