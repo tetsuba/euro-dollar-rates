@@ -9,7 +9,7 @@ export default class Home extends React.Component {
                     <div className="card-body">
                         <h5 className="card-title">Market Watch</h5>
                         <Link to="market-watch" className="btn btn-primary">
-                            Click here
+                            Click here...
                         </Link>
                     </div>
                 </div>
