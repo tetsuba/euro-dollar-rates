@@ -18,24 +18,16 @@ jobs:
           command: npm run client:build
           name: Build client
 
-  deploy: # this can be any name you choose
-    executor: heroku/default
-    steps:
-      - heroku/install
-      - heroku/deploy-via-git
-
 workflows:
-  build:
+  heroku_deploy:
     jobs:
       - build:
           filters:
             branches:
-              only:
-                - master
-      - deploy:
+              only: master
+      - heroku/deploy-via-git:
           requires:
             - build
           filters:
             branches:
-              only:
-                - master
+              only: master
