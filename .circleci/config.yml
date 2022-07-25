@@ -10,14 +10,19 @@ jobs:
       - checkout
       - node/install-packages:
           pkg-manager: npm
-      - run:
-          command: npm run test
-          name: Run tests
 
-      - persist_to_workspace:
-          root: ~/project
-          paths:
-            - .
+      - when:
+          condition:
+            equal: [ master, << pipeline.git.branch >> ]
+          steps:
+            - run:
+                command: npm run test
+                name: Run tests
+
+            - persist_to_workspace:
+                root: ~/project
+                paths:
+                  - .
 
 workflows:
   build_and_test:
