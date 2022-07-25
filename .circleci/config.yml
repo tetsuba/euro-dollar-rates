@@ -5,9 +5,9 @@ orbs:
 
 jobs:
   build_and_test: # this can be any name you choose
-    only-on-branch: master
     executor: node/default # use the default executor defined within the orb
     steps:
+      - only-on-branch: master
       - checkout
       - node/install-packages:
           pkg-manager: npm
