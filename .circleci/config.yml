@@ -13,7 +13,6 @@ jobs:
       - run:
           command: npm run test
           name: Run tests
-
       - persist_to_workspace:
           root: ~/project
           paths:
@@ -22,4 +21,8 @@ jobs:
 workflows:
   build_and_test:
     jobs:
-      - build_and_test
+      - build_and_test:
+          filters:
+            branches:
+              only:
+                - master
