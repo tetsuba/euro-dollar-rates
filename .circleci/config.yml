@@ -12,11 +12,8 @@ jobs:
       - node/install-packages:
           pkg-manager: npm
       - run:
-          command: npm run client:install
-          name: Install client
-      - run:
-          command: npm run client:build
-          name: Build client
+          command: npm run test
+          name: test api
 
 workflows:
   heroku_deploy:
