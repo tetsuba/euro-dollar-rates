@@ -12,8 +12,6 @@
     "test:cov": "jest --coverage",
     "start": "node server/index.js",
     "client": "npm start --prefix client",
-    "client:install": "npm install --prefix client",
-    "client:build": "npm run build --prefix client",
     "server": "node server/index.js",
     "dev": "npm run server & npm run client",
     "format": "prettier --write ./**/*"
