@@ -16,8 +16,7 @@
     "client:build": "npm run build --prefix client",
     "server": "node server/index.js",
     "dev": "npm run server & npm run client",
-    "format": "prettier --write ./**/*",
-    "heroku-postbuild": "npm run client:build"
+    "format": "prettier --write ./**/*"
   },
   "keywords": [],
   "author": "",
