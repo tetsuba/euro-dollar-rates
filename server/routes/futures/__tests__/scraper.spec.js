@@ -1,10 +1,14 @@
 import axios from 'axios'
-import { buildFuturesListTemplate, buildFutureTemplate } from './mocks/htmlMocks.js'
+import {
+    buildFuturesListTemplate,
+    buildFutureTemplate,
+} from './mocks/htmlMocks.js'
 import {
     scrapePaginationLastPageNumber,
     scrapeFuturesTableRows,
     scrapeFuturePage,
-    scrapeFuturesList, scrapeFuturePages,
+    scrapeFuturesList,
+    scrapeFuturePages,
 } from '../scraper.js'
 import mockFuturesList from './mocks/mockJsonFuturesList.json'
 
@@ -15,7 +19,6 @@ describe('scraper', () => {
         ['22', '23', '24', '25', '26'],
         ['1', '2-3', '4-5']
     )
-
 
     describe('scrapePaginationLastPageNumber()', () => {
         test('will return the last page number', async () => {
@@ -39,10 +42,15 @@ describe('scraper', () => {
                 name: 'EuroDollar 3 Moths',
                 price: '80',
                 symbol: 'EDM22',
-                link: 'http:example.com/futures'
+                link: 'http:example.com/futures',
             }
-            axios.get.mockResolvedValueOnce({ data: buildFutureTemplate(future.name, future.price) })
-            const list = await scrapeFuturePage({name: future.symbol, link: future.link})
+            axios.get.mockResolvedValueOnce({
+                data: buildFutureTemplate(future.name, future.price),
+            })
+            const list = await scrapeFuturePage({
+                name: future.symbol,
+                link: future.link,
+            })
             expect(list).toMatchObject(future)
         })
     })
@@ -61,21 +69,24 @@ describe('scraper', () => {
                 name: 'EuroDollar 3 Moths',
                 price: '80',
                 symbol: 'EDM22',
-                link: 'http:example.com/futures'
+                link: 'http:example.com/futures',
             }
             Array(mockFuturesList.list.length)
-              .fill(future)
-              .forEach(({name, price}) =>
-                axios.get.mockResolvedValueOnce({ data: buildFutureTemplate(name, price) })
-              )
+                .fill(future)
+                .forEach(({ name, price }) =>
+                    axios.get.mockResolvedValueOnce({
+                        data: buildFutureTemplate(name, price),
+                    })
+                )
             const list = await scrapeFuturePages(mockFuturesList.list)
             expect(list).toHaveLength(5)
         })
 
         test('will return an error', async () => {
             axios.get.mockResolvedValueOnce()
-            await expect(scrapeFuturePages(mockFuturesList.list))
-              .rejects.toThrow('Scraper Error: Page not found.')
+            await expect(
+                scrapeFuturePages(mockFuturesList.list)
+            ).rejects.toThrow('Scraper Error: Page not found.')
         })
     })
 })

@@ -5,9 +5,8 @@ import BreadCrumbs from '../../components/BreadCrumbs/BreadCrumbs'
 import { convertFutureStringToObject } from './utils'
 
 class Future extends React.Component {
-
     state = {
-        future: {}
+        future: {},
     }
 
     async componentDidMount() {
@@ -15,24 +14,25 @@ class Future extends React.Component {
 
         this.setState({
             future: future.data,
-            futureYear: future.data.list.map(convertFutureStringToObject)
+            futureYear: future.data.list.map(convertFutureStringToObject),
         })
     }
 
     renderList() {
-        return this.state.future.list.map(({name, price}) => (
-          <div>
-              <span>{name}</span>
-          </div>))
+        return this.state.future.list.map(({ name, price }) => (
+            <div>
+                <span>{name}</span>
+            </div>
+        ))
     }
 
     render() {
         console.log(this.state)
         return (
-          <>
-              <BreadCrumbs />
-              { this.state.future.list && this.renderList() }
-          </>
+            <>
+                <BreadCrumbs />
+                {this.state.future.list && this.renderList()}
+            </>
         )
     }
 }

@@ -3,7 +3,10 @@ import fs from 'fs'
 import request from 'supertest'
 import app from '../../index.js'
 import { buildFuturesListTemplate } from './mocks/htmlMocks.js'
-import { ClientErrorCode, InternalServerErrorCode } from '../../../errors/error-codes.js'
+import {
+    ClientErrorCode,
+    InternalServerErrorCode,
+} from '../../../errors/error-codes.js'
 import { mockFutureEDList, mockFuturesList } from './mocks/mockData.js'
 import mockJsonFuturesList from './mocks/mockJsonFuturesList.json'
 import mockJsonFutureED from './mocks/mockJsonFutureED.json'
@@ -233,8 +236,8 @@ describe('api/futures', () => {
         })
         describe('#ERROR', () => {
             test('Internal server error: Saving/writing a file failed.', (done) => {
-              // fs.existsSync.mockReturnValueOnce(false)
-              mockFuturesList.forEach(({ template }) =>
+                // fs.existsSync.mockReturnValueOnce(false)
+                mockFuturesList.forEach(({ template }) =>
                     axios.get.mockResolvedValueOnce({ data: template })
                 )
 
@@ -360,29 +363,30 @@ describe('api/futures', () => {
             })
         })
         describe('#ERROR...', () => {
-          test('Client error: incorrect symbol', (done) => {
-            fs.existsSync
-              .mockReturnValueOnce(false)
-              .mockReturnValueOnce(true)
+            test('Client error: incorrect symbol', (done) => {
+                fs.existsSync
+                    .mockReturnValueOnce(false)
+                    .mockReturnValueOnce(true)
 
-            fs.readFileSync
-              .mockResolvedValueOnce(JSON.stringify(mockJsonFuturesList))
-
-            axios.get.mockRejectedValueOnce('Page not found.')
-
-            request(app)
-              .get('/api/future/AL')
-              .expect('Content-Type', /json/)
-              .expect(ClientErrorCode)
-              .then((res) => {
-                expect(res.body.name).toEqual('Client error')
-                expect(res.body.message).toEqual(
-                  'Parameter Error: Missing or incorrect symbol (AL)'
+                fs.readFileSync.mockResolvedValueOnce(
+                    JSON.stringify(mockJsonFuturesList)
                 )
-                done()
-              })
-              .catch((err) => done(err))
-          })
+
+                axios.get.mockRejectedValueOnce('Page not found.')
+
+                request(app)
+                    .get('/api/future/AL')
+                    .expect('Content-Type', /json/)
+                    .expect(ClientErrorCode)
+                    .then((res) => {
+                        expect(res.body.name).toEqual('Client error')
+                        expect(res.body.message).toEqual(
+                            'Parameter Error: Missing or incorrect symbol (AL)'
+                        )
+                        done()
+                    })
+                    .catch((err) => done(err))
+            })
         })
     })
 })

@@ -7,7 +7,7 @@ import { deleteFile, readJsonFile, saveJsonFile } from '../../utils/utils.js'
 import { scrapeFuturePages, scrapeFuturesList } from './scraper.js'
 import { modifyFutureData, modifyFuturesListData } from './modifiers.js'
 import PATHS from '../../utils/paths.js'
-import { ParamError } from '../../errors/errors.js';
+import { ParamError } from '../../errors/errors.js'
 
 export async function getFuturesListHandler(req, res, next) {
     try {
@@ -52,13 +52,17 @@ export async function getFutureHandler(req, res, next) {
     try {
         let json = await readJsonFile(futureFilePath, undefined)
         if (!json) {
-            const futures = await readJsonFile(PATHS.FILE.FUTURES.LIST, undefined)
+            const futures = await readJsonFile(
+                PATHS.FILE.FUTURES.LIST,
+                undefined
+            )
 
             const list = futures.list.filter(({ name }) =>
                 name.startsWith(symbol.toUpperCase())
             )
 
-            if (list.length === 0) throw new ParamError(`Missing or incorrect symbol (${symbol})`)
+            if (list.length === 0)
+                throw new ParamError(`Missing or incorrect symbol (${symbol})`)
 
             const data = await scrapeFuturePages(list)
             json = modifyFutureData(data)

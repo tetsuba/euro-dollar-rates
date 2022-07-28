@@ -57,9 +57,9 @@ export async function scrapeFuturesList() {
     try {
         const lastPage = await scrapePaginationLastPageNumber()
         const promises = Array(lastPage)
-          .fill(0)
-          .map((_, i) => i+1)
-          .map(scrapeFuturesTableRows)
+            .fill(0)
+            .map((_, i) => i + 1)
+            .map(scrapeFuturesTableRows)
         const list = await Promise.all(promises)
         return list.flat()
     } catch (e) {

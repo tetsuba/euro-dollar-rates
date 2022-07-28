@@ -1,5 +1,7 @@
 # Ignore artifacts:
 node_modules
 public
+coverage
 /client/package-lock.json
 /client/package.json
+

@@ -14,7 +14,8 @@
     "client": "npm start --prefix client",
     "server": "node server/index.js",
     "dev": "npm run server & npm run client",
-    "format": "prettier --write ./**/*"
+    "format": "prettier --write ./**/*",
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": "",
@@ -29,6 +30,7 @@
   "devDependencies": {
     "@babel/preset-env": "^7.18.0",
     "babel-jest": "^28.1.0",
+    "husky": "^8.0.1",
     "jest": "^28.1.0",
     "prettier": "2.7.1",
     "supertest": "^6.2.3"
