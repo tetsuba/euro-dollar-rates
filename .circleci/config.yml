@@ -5,23 +5,39 @@ orbs:
   heroku: circleci/heroku@1.2.6
 
 jobs:
-  build: # this can be any name you choose
-    executor: node/default # use the default executor defined within the orb
+
+  server_tests:
+    executor: node/default
     steps:
       - checkout
       - node/install-packages:
           pkg-manager: npm
       - run:
           command: npm run test
-          name: test api
+          name: Server tests
+
+  client_tests:
+    executor: node/default
+    steps:
+      - checkout:
+          path: ~/client
+      - node/install-packages:
+          pkg-manager: npm
+      - run:
+          command: npm run test
+          name: Server tests
 
 workflows:
-  heroku_deploy:
+  tests:
     jobs:
-      - build:
+      - server_tests
+      - client_tests:
           filters:
             branches:
               ignore: master
+
+  heroku_deploy:
+    jobs:
       - heroku/deploy-via-git:
           filters:
             branches:
