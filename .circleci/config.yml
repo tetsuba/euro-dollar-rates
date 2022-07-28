@@ -21,10 +21,8 @@ workflows:
       - build:
           filters:
             branches:
-              only: master
+              ignore: master
       - heroku/deploy-via-git:
-          requires:
-            - build
           filters:
             branches:
               only: master
