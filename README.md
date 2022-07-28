@@ -12,3 +12,15 @@ Add these two properties to jest.config to create coverage report
 
 - "collectCoverage": true,
 - "coverageReporters": ["json", "html"],
+
+
+### Circleci
+
+
+### Heroku
+
+Deploying and building the production ready app on Heroku.
+Created a buildpack to support this build.
+
+
+Buildpack: https://github.com/tetsuba/subdir-heroku-buildpack
