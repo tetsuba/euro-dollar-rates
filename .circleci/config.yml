@@ -19,16 +19,18 @@ jobs:
   client_tests:
     executor: node/default
     steps:
-      - checkout:
-          path: ~/client
+      - checkout
       - node/install-packages:
           pkg-manager: npm
       - run:
-          command: npm run test
-          name: Server tests
+          command: npm install --prefix client
+          name: Install client
+      - run:
+          command: npm run test --prefix client
+          name: Client tests
 
 workflows:
-  tests:
+  client_server_tests:
     jobs:
       - server_tests
       - client_tests:
