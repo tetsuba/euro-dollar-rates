@@ -32,7 +32,11 @@ jobs:
 workflows:
   client_server_tests:
     jobs:
-      - server_tests
+      - server_tests:
+          filters:
+            branches:
+              ignore: master
+
       - client_tests:
           filters:
             branches:
