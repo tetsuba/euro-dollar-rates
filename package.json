@@ -14,7 +14,6 @@
     "client": "npm start --prefix client",
     "server": "node server/index.js",
     "dev": "npm run server & npm run client",
-    "format": "prettier --write ./**/*",
     "prepare": "husky install"
   },
   "keywords": [],

@@ -15,7 +15,7 @@ Add these two properties to jest.config to create coverage report
 
 
 ### Circleci
-
+https://circleci.com/docs/configuration-reference
 
 ### Heroku
 
@@ -24,3 +24,7 @@ Created a buildpack to support this build.
 
 
 Buildpack: https://github.com/tetsuba/subdir-heroku-buildpack
+
+
+## pre-commit
+npm husky
