@@ -1,11 +1,14 @@
 import React from 'react'
-import { getFuture } from '../../utils/service'
+import service from '../../utils/service'
 import { withRouter } from '../../HOC/withRouter'
 import BreadCrumbs from '../../components/BreadCrumbs/BreadCrumbs'
-import { convertFutureStringToObject } from './utils'
 import LineChart from '../../components/Charts/LineChart'
-import Checkbox from '../../components/Form/Checkbox'
-import { mutateFutureList, mutateFutureListForLineChart } from '../../utils/mutations'
+import {
+    mutateFutureList,
+    mutateFutureListForLineChart,
+    mutateFutureStringToObject,
+} from '../../utils/mutations'
+import FutureCheckBoxList from '../../components/List/FutureCheckBoxList';
 
 class Future extends React.Component {
     state = {
@@ -14,11 +17,12 @@ class Future extends React.Component {
     }
 
     async componentDidMount() {
-        const future = await getFuture(this.props.params.symbol)
+        const future = await service.getFuture(this.props.params.symbol)
+
         this.setState({
             future: future.data,
             futureList: mutateFutureList(future.data.list),
-            futureYear: future.data.list.map(convertFutureStringToObject),
+            futureYear: future.data.list.map(mutateFutureStringToObject),
         })
     }
 
@@ -28,25 +32,14 @@ class Future extends React.Component {
         const checked = e.target.getAttribute('data-checked')
         futureList[index].checked = !(checked === 'true')
         this.setState({
-            futureList
+            futureList,
         })
     }
 
     handlerOnClickButton = () => {
         this.setState({
-            showHideLineChart: !this.state.showHideLineChart
+            showHideLineChart: !this.state.showHideLineChart,
         })
-    }
-
-    renderCheckList() {
-        return this.state.futureList.map(({ month, year, price, checked }, index) =>
-          (<Checkbox
-            key={`cb-${index}`}
-            index={index}
-            label={`${year}/${month} - ${price}`}
-            checked={checked}
-            onClick={this.handlerOnClickCheckbox}
-          />))
     }
 
     render() {
@@ -55,29 +48,43 @@ class Future extends React.Component {
         return (
             <>
                 <BreadCrumbs />
-                {
-                    showHideLineChart &&
+                {showHideLineChart && (
                     <>
                         <div className="row">
-                            <button type="button" className="btn btn-primary" onClick={this.handlerOnClickButton}>Back</button>
+                            <button
+                                type="button"
+                                className="btn btn-primary"
+                                onClick={this.handlerOnClickButton}
+                            >
+                                Back
+                            </button>
                         </div>
                         <div className="row mt-5">
-                            <LineChart data={mutateFutureListForLineChart(futureList)} />
+                            <LineChart
+                                data={mutateFutureListForLineChart(futureList)}
+                            />
                         </div>
                     </>
-                }
-                {
-                    futureList && !showHideLineChart &&
+                )}
+                {futureList && !showHideLineChart && (
                     <>
                         <div className="row">
-                            <button type="button" className="btn btn-primary" onClick={this.handlerOnClickButton}>Create Chart</button>
+                            <button
+                                type="button"
+                                className="btn btn-primary"
+                                onClick={this.handlerOnClickButton}
+                            >
+                                Create Chart
+                            </button>
                         </div>
-                        <div className="row mt-5">
-                            { this.renderCheckList() }
+                        <div className="row mt-5" data-testid="future-checkbox-list">
+                            <FutureCheckBoxList
+                              list={futureList}
+                              onClick={this.handlerOnClickCheckbox}
+                            />
                         </div>
-
                     </>
-                }
+                )}
             </>
         )
     }

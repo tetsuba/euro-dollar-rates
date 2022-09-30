@@ -15,6 +15,7 @@ exports[`SearchBox rendered 1`] = `
       aria-describedby="inputGroup-sizing-lg"
       aria-label="Sizing example input"
       class="form-control"
+      data-testid="search-input"
       type="text"
       value=""
     />

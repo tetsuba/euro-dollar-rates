@@ -19,6 +19,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:cov": "npm run test -- --coverage .",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -38,5 +39,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "jest-canvas-mock": "^2.4.0"
+  },
+  "jest": {
+    "collectCoverageFrom": ["!./src/index.js", "!./src/**/*.*.js.snap"]
   }
 }

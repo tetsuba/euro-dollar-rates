@@ -3,3 +3,8 @@
 
 # Jest
 /coverage
+
+# Client
+client/build
+client/coverage
+client/node_modules

@@ -7,7 +7,6 @@ export default class MarketWatch extends React.Component {
         return (
             <>
                 <BreadCrumbs />
-
                 <h3>Market Watch</h3>
                 <div className="row mt-3">
                     <div className="card" style={{ width: '18rem' }}>
