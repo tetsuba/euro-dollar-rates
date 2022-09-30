@@ -1,5 +1,10 @@
 # Ignore artifacts:
 node_modules
 public
+coverage
 /client/package-lock.json
 /client/package.json
+/client/build
+/client/public
+/client/node_modules
+

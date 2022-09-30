@@ -8,6 +8,7 @@ export default function SearchBox(props) {
                 {label}
             </span>
             <input
+                data-testid="search-input"
                 value={text}
                 onChange={inputFunc}
                 type="text"

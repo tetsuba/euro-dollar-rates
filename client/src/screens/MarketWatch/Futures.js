@@ -1,34 +1,24 @@
 import React from 'react'
-import { getFuturesList } from '../../utils/service'
+import { GET_FUTURES_LIST } from '../../utils/service'
 import SearchBox from '../../components/SearchBox/SearchBox'
-import FilterList from '../../components/List/FilterList'
 import BreadCrumbs from '../../components/BreadCrumbs/BreadCrumbs'
+import withLoader from '../../HOC/withLoader'
+import FuturesFullList from '../../components/List/FuturesFullList'
+import FuturesGroupList from '../../components/List/FuturesGroupList.js'
+import { mutateFuturesList, mutateFuturesListByGroupingNames } from '../../utils/mutations';
 
-const URLS = {
-    MARKET_WATCH: 'https://www.marketwatch.com/investing/future/',
-}
-
-export default class Futures extends React.Component {
+class Futures extends React.Component {
     state = {
         list: [],
         text: '',
     }
 
     async componentDidMount() {
-        const futures = await getFuturesList()
-        const list = futures.data.list.map(({ name }) => name)
+        const list = mutateFuturesList(this.props.futures.list)
         this.setState({
             list,
-            group: this.groupList(list),
+            group: mutateFuturesListByGroupingNames(list),
         })
-    }
-
-    groupList(list) {
-        const j = list
-            .filter((string) => !string.endsWith('00'))
-            .map((string) => string.replace(string.slice(-3), ''))
-
-        return [...new Set(j)]
     }
 
     inputText = (ele) => {
@@ -52,16 +42,13 @@ export default class Futures extends React.Component {
                 </div>
                 <div className="row mt-4">
                     <div className="col">
-                        <FilterList
-                            label="Full List"
+                        <FuturesFullList
                             list={this.state.list}
                             text={this.state.text}
-                            link={URLS.MARKET_WATCH}
                         />
                     </div>
                     <div className="col">
-                        <FilterList
-                            label="Group List"
+                        <FuturesGroupList
                             list={this.state.group}
                             text={this.state.text}
                         />
@@ -71,3 +58,8 @@ export default class Futures extends React.Component {
         )
     }
 }
+
+// TODO: Using an HOC to grab data from the server.
+//       This is not very clear to follow.
+//       Look into using hooks pattern to handle this request.
+export default withLoader(Futures, GET_FUTURES_LIST)

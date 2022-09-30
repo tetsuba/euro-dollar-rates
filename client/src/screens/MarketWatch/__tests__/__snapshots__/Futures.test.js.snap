@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Futures should render a loading screen until api call is completed 1`] = `
+<DocumentFragment>
+  <div
+    class="spinner-border"
+    role="status"
+  >
+    <span
+      class="visually-hidden"
+    >
+      Loading...
+    </span>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Futures should render a loading screen until api call is completed 2`] = `
+<DocumentFragment>
+  <div
+    class="row shadow mb-5"
+  >
+    <nav
+      aria-label="breadcrumb"
+    >
+      <ol
+        class="breadcrumb mt-3"
+      >
+        <li
+          class="breadcrumb-item"
+        >
+          <a
+            href="/"
+          >
+            Home
+          </a>
+        </li>
+        <li
+          aria-current="page"
+          class="breadcrumb-item active"
+        />
+      </ol>
+    </nav>
+  </div>
+  <div
+    class="row"
+  >
+    <div
+      class="col"
+    >
+      <div
+        class="input-group input-group-lg"
+      >
+        <span
+          class="input-group-text"
+          id="inputGroup-sizing-lg"
+        >
+          Futures Symbol
+        </span>
+        <input
+          aria-describedby="inputGroup-sizing-lg"
+          aria-label="Sizing example input"
+          class="form-control"
+          data-testid="search-input"
+          type="text"
+          value=""
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    class="row mt-4"
+  >
+    <div
+      class="col"
+    />
+    <div
+      class="col"
+    />
+  </div>
+</DocumentFragment>
+`;

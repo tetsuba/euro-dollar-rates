@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MarketWatch should render screen 1`] = `
+<DocumentFragment>
+  <div
+    class="row shadow mb-5"
+  >
+    <nav
+      aria-label="breadcrumb"
+    >
+      <ol
+        class="breadcrumb mt-3"
+      >
+        <li
+          class="breadcrumb-item"
+        >
+          <a
+            href="/"
+          >
+            Home
+          </a>
+        </li>
+        <li
+          aria-current="page"
+          class="breadcrumb-item active"
+        />
+      </ol>
+    </nav>
+  </div>
+  <h3>
+    Market Watch
+  </h3>
+  <div
+    class="row mt-3"
+  >
+    <div
+      class="card"
+      style="width: 18rem;"
+    >
+      <div
+        class="card-body"
+      >
+        <h5
+          class="card-title"
+        >
+          Futures
+        </h5>
+        <p
+          class="card-text"
+        >
+          Click on the button below to view market watch futures list codes
+        </p>
+        <a
+          class="btn btn-primary"
+          href="/futures"
+        >
+          Click here
+        </a>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
