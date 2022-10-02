@@ -13,8 +13,7 @@
     "start": "node server/index.js",
     "client": "npm start --prefix client",
     "server": "node server/index.js",
-    "dev": "npm run server & npm run client",
-    "prepare": "husky install"
+    "dev": "npm run server & npm run client"
   },
   "keywords": [],
   "author": "",
@@ -33,5 +32,10 @@
     "jest": "^28.1.0",
     "prettier": "2.7.1",
     "supertest": "^6.2.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
   }
 }

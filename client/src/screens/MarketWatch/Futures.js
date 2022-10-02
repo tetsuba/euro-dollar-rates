@@ -5,7 +5,10 @@ import BreadCrumbs from '../../components/BreadCrumbs/BreadCrumbs'
 import withLoader from '../../HOC/withLoader'
 import FuturesFullList from '../../components/List/FuturesFullList'
 import FuturesGroupList from '../../components/List/FuturesGroupList.js'
-import { mutateFuturesList, mutateFuturesListByGroupingNames } from '../../utils/mutations';
+import {
+    mutateFuturesList,
+    mutateFuturesListByGroupingNames,
+} from '../../utils/mutations'
 
 class Futures extends React.Component {
     state = {

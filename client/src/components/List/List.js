@@ -6,7 +6,7 @@ export default function List(props) {
 
     function renderListItem(args, i) {
         return (
-            <li className="list-group-item" key={`${partialKey + i}`} >
+            <li className="list-group-item" key={`${partialKey + i}`}>
                 {renderItem(args, i)}
             </li>
         )
@@ -14,12 +14,11 @@ export default function List(props) {
 
     return (
         <ul className="list-group list-group-flush">
-            {
-                listHeader &&
-                    <ListHeader>
-                      <h5 className="mt-3">{listHeader}</h5>
-                    </ListHeader>
-            }
+            {listHeader && (
+                <ListHeader>
+                    <h5 className="mt-3">{listHeader}</h5>
+                </ListHeader>
+            )}
 
             {list.map(renderListItem)}
         </ul>

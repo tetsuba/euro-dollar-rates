@@ -8,7 +8,7 @@ import {
     mutateFutureListForLineChart,
     mutateFutureStringToObject,
 } from '../../utils/mutations'
-import FutureCheckBoxList from '../../components/List/FutureCheckBoxList';
+import FutureCheckBoxList from '../../components/List/FutureCheckBoxList'
 
 class Future extends React.Component {
     state = {
@@ -77,10 +77,13 @@ class Future extends React.Component {
                                 Create Chart
                             </button>
                         </div>
-                        <div className="row mt-5" data-testid="future-checkbox-list">
+                        <div
+                            className="row mt-5"
+                            data-testid="future-checkbox-list"
+                        >
                             <FutureCheckBoxList
-                              list={futureList}
-                              onClick={this.handlerOnClickCheckbox}
+                                list={futureList}
+                                onClick={this.handlerOnClickCheckbox}
                             />
                         </div>
                     </>

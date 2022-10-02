@@ -7,13 +7,12 @@ export function mutateFuturesList(list) {
 
 export function mutateFuturesListByGroupingNames(list) {
     const j = list
-      .filter((string) => !string.endsWith('00'))
-      .map((string) => string.replace(string.slice(-3), ''))
+        .filter((string) => !string.endsWith('00'))
+        .map((string) => string.replace(string.slice(-3), ''))
 
     // A value in the (Set) may only occur once.
     return [...new Set(j)]
 }
-
 
 // ***********************************************
 // FUTURE LIST - list of data of a specific future
@@ -40,8 +39,3 @@ export function mutateFutureStringToObject(future) {
         price: future.price,
     }
 }
-
-
-
-
-

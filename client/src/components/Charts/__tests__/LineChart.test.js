@@ -1,7 +1,3 @@
-
-
 describe('LineChart', () => {
-  test('line chart loaded', () => {
-
-  })
+    test('line chart loaded', () => {})
 })
