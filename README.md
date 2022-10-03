@@ -28,13 +28,3 @@ Buildpack: https://github.com/tetsuba/subdir-heroku-buildpack
 
 ## pre-commit
 npm husky
-
-
-
-## TODO:
-
-- How to refresh data from the client side
-- Do i need a database? MONGODB -- Create a schema
-- How to edit data?
-- How to add additional support for queries to rip the data from the website
-- Add type script to front end
