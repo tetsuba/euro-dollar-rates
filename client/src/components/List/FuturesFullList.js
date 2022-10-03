@@ -6,8 +6,7 @@ export default function FuturesFullList({ list, text }) {
         return (
             <a
                 href={`https://www.marketwatch.com/investing/future/${name}`}
-                target="_blank"
-                rel="noreferrer"
+                rel="noopener"
                 data-testid="external-link"
             >
                 {name}

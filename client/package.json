@@ -11,7 +11,7 @@
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-router-dom": "^6.3.0",
-    "react-scripts": "^5.0.1",
+    "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
   "proxy": "http://localhost:3001",
@@ -44,6 +44,9 @@
     "jest-canvas-mock": "^2.4.0"
   },
   "jest": {
-    "collectCoverageFrom": ["!./src/index.js", "!./src/**/*.*.js.snap"]
+    "collectCoverageFrom": [
+      "!./src/index.js",
+      "!./src/**/*.*.js.snap"
+    ]
   }
 }
