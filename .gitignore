@@ -1,5 +1,5 @@
 /.idea
-/node_modules
+/node_modules/
 
 # Jest
 /coverage
@@ -8,3 +8,4 @@
 client/build
 client/coverage
 client/node_modules
+
