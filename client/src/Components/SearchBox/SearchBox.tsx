@@ -1,5 +1,5 @@
 import React from 'react'
-import {InputElementType} from "../../utils/types"
+import { InputElementType } from '../../utils/types'
 
 interface PropTypes {
     label: string

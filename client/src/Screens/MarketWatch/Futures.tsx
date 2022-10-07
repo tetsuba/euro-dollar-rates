@@ -9,7 +9,7 @@ import {
     mutateFuturesList,
     mutateFuturesListByGroupingNames,
 } from '../../utils/mutations'
-import {FuturesType, InputElementType} from "../../utils/types"
+import { FuturesType, InputElementType } from '../../utils/types'
 
 interface PropTypes {
     futures: FuturesType
@@ -47,7 +47,7 @@ class Futures extends React.Component<PropTypes, StateTypes> {
     }
 
     render() {
-        const {text, list, group} = this.state
+        const { text, list, group } = this.state
 
         return (
             <>

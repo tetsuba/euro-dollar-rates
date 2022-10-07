@@ -7,7 +7,9 @@ export default function withLoader(Component: any, funcName: any) {
         const [data, setData] = useState(null)
 
         useEffect(() => {
-            Reflect.get(Service, funcName)().then((res: any) => setData(res.data))
+            Reflect.get(Service, funcName)().then((res: any) =>
+                setData(res.data)
+            )
         }, [])
 
         if (!data) return <LoadingSpinner />

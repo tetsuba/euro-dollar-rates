@@ -2,17 +2,22 @@
 //       Look for a better solution.
 
 import React from 'react'
-import {EventClickType} from "../../utils/types";
+import { EventClickType } from '../../utils/types'
 
 export interface CheckboxProps {
     key?: string
-    label: string,
-    checked: boolean,
-    onClick: (e: EventClickType) => void,
-    index: number,
+    label: string
+    checked: boolean
+    onClick: (e: EventClickType) => void
+    index: number
 }
 
-export default function Checkbox({ label, checked, onClick, index }: CheckboxProps): JSX.Element {
+export default function Checkbox({
+    label,
+    checked,
+    onClick,
+    index,
+}: CheckboxProps): JSX.Element {
     return (
         <div
             className="form-check"

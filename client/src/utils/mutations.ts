@@ -1,4 +1,10 @@
-import {FutureLineChartType, FutureListType, FuturesListType, FuturesNameType, FutureType} from "./types"
+import {
+    FutureLineChartType,
+    FutureListType,
+    FuturesListType,
+    FuturesNameType,
+    FutureType,
+} from './types'
 
 // ***********************************************
 // FUTURES LIST - list of all futures
@@ -8,7 +14,9 @@ export function mutateFuturesList(list: FuturesListType[]): FuturesNameType[] {
     return list.map(({ name }) => name)
 }
 
-export function mutateFuturesListByGroupingNames(list: FuturesNameType[]): FuturesNameType[] {
+export function mutateFuturesListByGroupingNames(
+    list: FuturesNameType[]
+): FuturesNameType[] {
     const j = list
         .filter((name) => !name.endsWith('00'))
         .map((name) => name.replace(name.slice(-3), ''))
@@ -26,7 +34,9 @@ export function mutateFutureList(list: FutureType[]): FutureType[] {
         .sort((a, b) => a.year - b.year)
 }
 
-export function mutateFutureListForLineChart(list: FutureType[]): FutureLineChartType {
+export function mutateFutureListForLineChart(
+    list: FutureType[]
+): FutureLineChartType {
     const filtered = list.filter(({ checked }) => checked)
     return {
         prices: filtered.map(({ price }) => price.replace(/,/g, '')),

@@ -1,7 +1,7 @@
 import React from 'react'
 import List from './List'
 import Checkbox from '../Form/Checkbox'
-import {EventClickType, FutureType} from "../../utils/types";
+import { EventClickType, FutureType } from '../../utils/types'
 
 interface FutureListTypes {
     month: string
@@ -15,8 +15,14 @@ interface PropTypes {
     onClick: (e: EventClickType) => void
 }
 
-export default function FutureCheckBoxList({ list, onClick }: PropTypes): JSX.Element {
-    function renderLinkItem({ month, year, price, checked }: FutureListTypes, index: number) {
+export default function FutureCheckBoxList({
+    list,
+    onClick,
+}: PropTypes): JSX.Element {
+    function renderLinkItem(
+        { month, year, price, checked }: FutureListTypes,
+        index: number
+    ) {
         return (
             <Checkbox
                 key={`cb-${index}`}

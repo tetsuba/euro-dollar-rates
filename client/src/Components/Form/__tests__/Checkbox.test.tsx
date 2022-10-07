@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, screen, fireEvent } from '@testing-library/react'
-import Checkbox, {CheckboxProps} from '../Checkbox'
+import Checkbox, { CheckboxProps } from '../Checkbox'
 
 describe('Checkbox', () => {
     const mockProps: CheckboxProps = {

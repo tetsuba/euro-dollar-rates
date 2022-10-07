@@ -6,7 +6,10 @@ interface PropTypes {
     text: string
 }
 
-export default function FuturesFullList({ list, text }: PropTypes): React.ReactElement {
+export default function FuturesFullList({
+    list,
+    text,
+}: PropTypes): React.ReactElement {
     const renderList = text !== ''
 
     function renderLinkItem(name: string) {
@@ -21,14 +24,14 @@ export default function FuturesFullList({ list, text }: PropTypes): React.ReactE
         )
     }
 
-    return renderList
-        ? (
-            <List
-                partialKey="ffl-"
-                renderItem={renderLinkItem}
-                listHeader="Full List"
-                list={list}
-            />
-        )
-        : <></>
+    return renderList ? (
+        <List
+            partialKey="ffl-"
+            renderItem={renderLinkItem}
+            listHeader="Full List"
+            list={list}
+        />
+    ) : (
+        <></>
+    )
 }

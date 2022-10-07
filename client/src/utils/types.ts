@@ -35,5 +35,3 @@ export type FutureListType = {
     price: string
     year: string
 }
-
-

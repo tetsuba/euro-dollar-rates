@@ -44,27 +44,68 @@ describe('mutations', () => {
         describe('mutateFutureList()', () => {
             test('should return list with a new property and sorted by year', () => {
                 const mockList = [
-                    { year: 2021, month: '08', price: '1,000,000.50', name: '', symbol: '' },
-                    { year: 2010, month: '06', price: '100,000', name: '', symbol: '' },
-                    { year: 1999, month: '02', price: '1,000', name: '', symbol: '' },
-                    { year: 2000, month: '04', price: '10,000', name: '', symbol: '' },
-                ]
-
-                const expectedList = [
-                    { year: 1999, month: '02', price: '1,000', checked: true, name: '', symbol: '' },
-                    { year: 2000, month: '04', price: '10,000', checked: true, name: '', symbol: '' },
+                    {
+                        year: 2021,
+                        month: '08',
+                        price: '1,000,000.50',
+                        name: '',
+                        symbol: '',
+                    },
                     {
                         year: 2010,
                         month: '06',
                         price: '100,000',
-                        checked: true, name: '', symbol: ''
+                        name: '',
+                        symbol: '',
+                    },
+                    {
+                        year: 1999,
+                        month: '02',
+                        price: '1,000',
+                        name: '',
+                        symbol: '',
+                    },
+                    {
+                        year: 2000,
+                        month: '04',
+                        price: '10,000',
+                        name: '',
+                        symbol: '',
+                    },
+                ]
 
+                const expectedList = [
+                    {
+                        year: 1999,
+                        month: '02',
+                        price: '1,000',
+                        checked: true,
+                        name: '',
+                        symbol: '',
+                    },
+                    {
+                        year: 2000,
+                        month: '04',
+                        price: '10,000',
+                        checked: true,
+                        name: '',
+                        symbol: '',
+                    },
+                    {
+                        year: 2010,
+                        month: '06',
+                        price: '100,000',
+                        checked: true,
+                        name: '',
+                        symbol: '',
                     },
                     {
                         year: 2021,
                         month: '08',
                         price: '1,000,000.50',
-                        checked: true, name: '', symbol: ''
+                        checked: true,
+                        name: '',
+                        symbol: '',
                     },
                 ]
 
@@ -73,14 +114,37 @@ describe('mutations', () => {
         })
         describe('mutateFutureListForLineChart()', () => {
             const mockList = [
-                { year: 1998, month: '02', price: '1,000', checked: true, name: '', symbol: '' },
-                { year: 2000, month: '04', price: '10,000', checked: true, name: '', symbol: '' },
-                { year: 2021, month: '06', price: '100,000', checked: false, name: '', symbol: '' },
+                {
+                    year: 1998,
+                    month: '02',
+                    price: '1,000',
+                    checked: true,
+                    name: '',
+                    symbol: '',
+                },
+                {
+                    year: 2000,
+                    month: '04',
+                    price: '10,000',
+                    checked: true,
+                    name: '',
+                    symbol: '',
+                },
+                {
+                    year: 2021,
+                    month: '06',
+                    price: '100,000',
+                    checked: false,
+                    name: '',
+                    symbol: '',
+                },
                 {
                     year: 2021,
                     month: '08',
                     price: '1,000,000.50',
-                    checked: true, name: '', symbol: ''
+                    checked: true,
+                    name: '',
+                    symbol: '',
                 },
             ]
 
@@ -116,7 +180,7 @@ describe('mutations', () => {
                     price: '100',
                     symbol: '',
                     month: '',
-                    year: 2000
+                    year: 2000,
                 }
                 const expected = {
                     month: 'Jun',

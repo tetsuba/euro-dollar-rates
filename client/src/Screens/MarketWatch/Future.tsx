@@ -15,8 +15,8 @@ import {
     mutateFutureListForLineChart,
     mutateFutureStringToObject,
 } from '../../utils/mutations'
-import {EventClickType, FutureListType, FutureType} from '../../utils/types'
-import LoadingSpinner from "../../Components/LoadingSpinner/LoadingSpinner";
+import { EventClickType, FutureListType, FutureType } from '../../utils/types'
+import LoadingSpinner from '../../Components/LoadingSpinner/LoadingSpinner'
 
 interface PropTypes {
     params: {
@@ -34,13 +34,12 @@ interface StateTypes {
     showHideLineChart: boolean
 }
 
-
 class Future extends React.Component<PropTypes, StateTypes> {
     state = {
         future: {
             data: {
-                list: []
-            }
+                list: [],
+            },
         },
         futureList: [],
         futureYear: [],
@@ -67,7 +66,7 @@ class Future extends React.Component<PropTypes, StateTypes> {
         // TS2339: Property 'checked' does not exist on type 'never'.
         // @ts-ignore
         futureList[Number(index)].checked = !(checked === 'true')
-        this.setState({futureList})
+        this.setState({ futureList })
     }
 
     handlerOnClickButton = () => {
@@ -107,10 +106,7 @@ class Future extends React.Component<PropTypes, StateTypes> {
                         Create Chart
                     </button>
                 </div>
-                <div
-                    className="row mt-5"
-                    data-testid="future-checkbox-list"
-                >
+                <div className="row mt-5" data-testid="future-checkbox-list">
                     <FutureCheckBoxList
                         list={futureList}
                         onClick={this.handlerOnClickCheckbox}
@@ -126,13 +122,13 @@ class Future extends React.Component<PropTypes, StateTypes> {
         return (
             <>
                 <BreadCrumbs />
-                {
-                    futureList.length < 1
-                        ? <LoadingSpinner />
-                        : showHideLineChart
-                            ? this.renderChart(futureList)
-                            : this.renderList(futureList)
-                }
+                {futureList.length < 1 ? (
+                    <LoadingSpinner />
+                ) : showHideLineChart ? (
+                    this.renderChart(futureList)
+                ) : (
+                    this.renderList(futureList)
+                )}
             </>
         )
     }
