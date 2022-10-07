@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from '@testing-library/react'
-import List, {PropTypes} from '../List'
+import List, { PropTypes } from '../List'
 
 describe('List', () => {
     const mockProps: PropTypes = {

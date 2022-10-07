@@ -35,7 +35,6 @@ export default function LineChart(props: PropTypes) {
                 },
             })
         }
-
     }, [props.prices, props.labels])
 
     return <canvas data-testid="line-chart" ref={node} height="500"></canvas>

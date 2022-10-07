@@ -6,7 +6,7 @@ describe('SearchBox', () => {
     const mockProps = {
         label: 'Search Box',
         inputFunc: () => {},
-        text: ''
+        text: '',
     }
 
     test('rendered', () => {

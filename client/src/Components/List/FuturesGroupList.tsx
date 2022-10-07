@@ -20,14 +20,14 @@ export default function FuturesGroupList({ list, text }: PropTypes) {
         )
     }
 
-    return renderList
-        ? (
-            <List
-                partialKey="fgl-"
-                renderItem={renderLinkItem}
-                listHeader="Group List"
-                list={list}
-            />
-        )
-        : <></>
+    return renderList ? (
+        <List
+            partialKey="fgl-"
+            renderItem={renderLinkItem}
+            listHeader="Group List"
+            list={list}
+        />
+    ) : (
+        <></>
+    )
 }

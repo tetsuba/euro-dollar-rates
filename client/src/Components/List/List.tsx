@@ -26,9 +26,7 @@ export default function List(props: PropTypes): JSX.Element {
                     <h5 className="mt-3">{listHeader}</h5>
                 </ListHeader>
             )}
-            {
-                list.map(renderListItem)
-            }
+            {list.map(renderListItem)}
         </ul>
     )
 }
