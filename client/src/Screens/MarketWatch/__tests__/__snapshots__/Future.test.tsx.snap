@@ -1,0 +1,162 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Future should render 1`] = `
+<DocumentFragment>
+  <div
+    class="row shadow mb-5"
+  >
+    <nav
+      aria-label="breadcrumb"
+    >
+      <ol
+        class="breadcrumb mt-3"
+      >
+        <li
+          class="breadcrumb-item"
+        >
+          <a
+            href="/"
+          >
+            Home
+          </a>
+        </li>
+        <li
+          class="breadcrumb-item"
+        >
+          <a
+            href="/market-watch"
+          >
+            market-watch
+          </a>
+        </li>
+        <li
+          class="breadcrumb-item"
+        >
+          <a
+            href="/market-watch/futures"
+          >
+            futures
+          </a>
+        </li>
+        <li
+          aria-current="page"
+          class="breadcrumb-item active"
+        >
+          ED
+        </li>
+      </ol>
+    </nav>
+  </div>
+  <div
+    class="row"
+  >
+    <button
+      class="btn btn-primary"
+      type="button"
+    >
+      Create Chart
+    </button>
+  </div>
+  <div
+    class="row mt-5"
+    data-testid="future-checkbox-list"
+  >
+    <ul
+      class="list-group list-group-flush"
+    >
+      <li
+        class="list-group-item"
+      >
+        <div
+          class="form-check"
+          data-checked="true"
+          data-index="0"
+          data-testid="checkbox-custom"
+        >
+          <input
+            checked=""
+            class="form-check-input pe-none"
+            id="flexCheckDefault"
+            type="checkbox"
+          />
+          <label
+            class="form-check-label pe-none"
+            for="flexCheckDefault"
+          >
+            1999/06 - 1,000
+          </label>
+        </div>
+      </li>
+      <li
+        class="list-group-item"
+      >
+        <div
+          class="form-check"
+          data-checked="true"
+          data-index="1"
+          data-testid="checkbox-custom"
+        >
+          <input
+            checked=""
+            class="form-check-input pe-none"
+            id="flexCheckDefault"
+            type="checkbox"
+          />
+          <label
+            class="form-check-label pe-none"
+            for="flexCheckDefault"
+          >
+            2001/06 - 10,000
+          </label>
+        </div>
+      </li>
+      <li
+        class="list-group-item"
+      >
+        <div
+          class="form-check"
+          data-checked="true"
+          data-index="2"
+          data-testid="checkbox-custom"
+        >
+          <input
+            checked=""
+            class="form-check-input pe-none"
+            id="flexCheckDefault"
+            type="checkbox"
+          />
+          <label
+            class="form-check-label pe-none"
+            for="flexCheckDefault"
+          >
+            2010/06 - 100,000
+          </label>
+        </div>
+      </li>
+      <li
+        class="list-group-item"
+      >
+        <div
+          class="form-check"
+          data-checked="true"
+          data-index="3"
+          data-testid="checkbox-custom"
+        >
+          <input
+            checked=""
+            class="form-check-input pe-none"
+            id="flexCheckDefault"
+            type="checkbox"
+          />
+          <label
+            class="form-check-label pe-none"
+            for="flexCheckDefault"
+          >
+            2021/06 - 1,000,000.50
+          </label>
+        </div>
+      </li>
+    </ul>
+  </div>
+</DocumentFragment>
+`;
