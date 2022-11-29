@@ -33,6 +33,9 @@ jobs:
       - name: Change directory
         run: cd client
 
+      - name: Show list
+        run: ls
+
       - name: Build client
         uses: actions/setup-node@v1
         with:
