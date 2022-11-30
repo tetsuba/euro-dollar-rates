@@ -1,10 +1,11 @@
 /.idea
-/node_modules/
-
-# Jest
-/coverage
+.DS_Store
 
 # Client
-client/build
-client/coverage
-client/node_modules
+/client/build
+/client/coverage
+/client/node_modules
+/client/coverage
+
+# Server
+/server/node_modules

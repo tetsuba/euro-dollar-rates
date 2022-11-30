@@ -1,0 +1,60 @@
+name: Deploy to Amazon Elastic Beanstalk
+
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ 16.x ]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Node setup
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Build client
+        working-directory: client
+        run: npm ci && npm run build
+
+      - name: Move client/build to server/build
+        run: mv client/build server/build
+
+      - name: Generate deployment package
+        working-directory: server
+        run: zip -r deploy.zip *
+
+      - name: Get timestamp
+        uses: gerred/actions/current-time@master
+        id: current-time
+
+      - name: Run string replace
+        uses: frabert/replace-string-action@v2.0
+        id: format-time
+        with:
+          pattern: '[:\.]+'
+          string: "${{ steps.current-time.outputs.time }}"
+          replace-with: '-'
+          flags: 'g'
+
+      - name: Beanstalk Deploy for app
+        uses: einaregilsson/beanstalk-deploy@v10
+        with:
+          aws_access_key: ${{secrets.AWS_ACCESS_KEY_ID}}
+          aws_secret_key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+          application_name: "fin-scraper"
+          environment_name: "Finscraper-env"
+          region: eu-west-2
+          version_label: "fin-scraper-${{ steps.format-time.outputs.replaced }}"
+          deployment_package: ./server/deploy.zip
+
+      - name: Deployed!
+        run: echo App deployed to ELB

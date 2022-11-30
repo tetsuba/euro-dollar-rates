@@ -23,6 +23,8 @@ interface PropTypes {
         [key: string]: string
     }
 }
+
+
 interface StateTypes {
     future: {
         data: {
@@ -33,6 +35,7 @@ interface StateTypes {
     futureYear: FutureListType[]
     showHideLineChart: boolean
 }
+
 
 class Future extends React.Component<PropTypes, StateTypes> {
     state = {
@@ -66,6 +69,7 @@ class Future extends React.Component<PropTypes, StateTypes> {
         // TS2339: Property 'checked' does not exist on type 'never'.
         // @ts-ignore
         futureList[Number(index)].checked = !(checked === 'true')
+        // futureList[Number(index)].checked = !(checked === 'true')
         this.setState({ futureList })
     }
 
