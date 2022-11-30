@@ -1,22 +1,8 @@
-
 name: Deploy to Amazon Elastic Beanstalk
 
 on:
   push:
     branches: [ "actions" ]
-
-env:
-  AWS_REGION: eu-west-2                   # set this to your preferred AWS region, e.g. us-west-1
-  ECR_REPOSITORY: fin-scraper          # set this to your Amazon ECR repository name
-#  ECS_SERVICE: MY_ECS_SERVICE                 # set this to your Amazon ECS service name
-#  ECS_CLUSTER: MY_ECS_CLUSTER                 # set this to your Amazon ECS cluster name
-#  ECS_TASK_DEFINITION: MY_ECS_TASK_DEFINITION # set this to the path to your Amazon ECS task definition
-  # file, e.g. .aws/task-definition.json
-#  CONTAINER_NAME: MY_CONTAINER_NAME           # set this to the name of the container in the
-  # containerDefinitions section of your task definition
-
-permissions:
-  contents: read
 
 jobs:
   build:
@@ -30,15 +16,45 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Show list in client
-        working-directory: client
-        run: ls
-
       - name: Node setup
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Build Client
+      - name: Build client
         working-directory: client
         run: npm ci
+
+      - name: Delete files and directories
+        working-directory: client
+        run: find . -type d ! -name 'build' -delete
+
+      - name: Generate deployment package
+        run: zip -r deploy.zip *
+
+      - name: Get timestamp
+        uses: gerred/actions/current-time@master
+        id: current-time
+
+      - name: Run string replace
+        uses: frabert/replace-string-action@master
+        id: format-time
+        with:
+          pattern: '[:\.]+'
+          string: "${{ steps.current-time.outputs.time }}"
+          replace-with: '-'
+          flags: 'g'
+
+      - name: Beanstalk Deploy for app
+        uses: einaregilsson/beanstalk-deploy@v10
+        with:
+          aws_access_key: ${{secrets.AWS_ACCESS_KEY_ID}}
+          aws_secret_key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+          application_name: "fin-scraper"
+          environment_name: "Finscraper-env"
+          region: eu-west-2
+          version_label: "fin-scraper-${{ steps.format-time.outputs.replaced }}"
+          deployment_package: deploy.zip
+
+      - name: Deployed!
+        run: echo App deployed to ELB
