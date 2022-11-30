@@ -7,7 +7,7 @@ interface PropTypes {
 }
 
 export default function LineChart(props: PropTypes) {
-    const node = useRef(null)
+    const node = useRef<HTMLCanvasElement>(null)
 
     useEffect(() => {
         if (node.current) {

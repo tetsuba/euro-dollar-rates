@@ -2,17 +2,17 @@
   "name": "fin-scraper",
   "version": "1.0.0",
   "description": "",
-  "main": "server/index.js",
+  "main": "index.js",
   "type": "module",
   "engines": {
-    "node": "16.15.0"
+    "node": "16.17.1"
   },
   "scripts": {
     "test": "jest",
     "test:cov": "jest --coverage",
-    "start": "node server/index.js",
-    "client": "npm start --prefix client",
-    "server": "node server/index.js",
+    "start": "node index.js",
+    "client": "npm start --prefix ../client",
+    "server": "node index.js",
     "dev": "npm run server & npm run client"
   },
   "keywords": [],
