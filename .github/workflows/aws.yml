@@ -37,7 +37,7 @@ jobs:
         id: current-time
 
       - name: Run string replace
-        uses: frabert/replace-string-action@master
+        uses: frabert/replace-string-action@v2.0
         id: format-time
         with:
           pattern: '[:\.]+'
@@ -54,7 +54,7 @@ jobs:
           environment_name: "Finscraper-env"
           region: eu-west-2
           version_label: "fin-scraper-${{ steps.format-time.outputs.replaced }}"
-          deployment_package: deploy.zip
+          deployment_package: sever/deploy.zip
 
       - name: Deployed!
         run: echo App deployed to ELB
