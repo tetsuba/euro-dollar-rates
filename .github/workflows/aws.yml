@@ -2,11 +2,11 @@ name: Deploy to Amazon Elastic Beanstalk
 
 on:
   push:
-    branches: [ "actions" ]
+    branches: [ "master" ]
 
 jobs:
   build:
-    name: Build Client
+    name: Build and Deploy
     runs-on: ubuntu-latest
     strategy:
       matrix:
