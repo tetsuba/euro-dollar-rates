@@ -23,13 +23,13 @@ jobs:
 
       - name: Build client
         working-directory: client
-        run: npm ci
+        run: npm ci && npm run build
 
-      - name: Delete files and directories
-        working-directory: client
-        run: find . -type d ! -name 'build' -delete
+      - name: Move client/build to server/build
+        run: mv client/build server/build
 
       - name: Generate deployment package
+        working-directory: server
         run: zip -r deploy.zip *
 
       - name: Get timestamp
