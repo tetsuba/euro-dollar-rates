@@ -46,7 +46,6 @@ jobs:
           flags: 'g'
 
       - name: Beanstalk Deploy for app
-        working-directory: server
         uses: einaregilsson/beanstalk-deploy@v10
         with:
           aws_access_key: ${{secrets.AWS_ACCESS_KEY_ID}}
@@ -55,6 +54,7 @@ jobs:
           environment_name: "Finscraper-env"
           region: eu-west-2
           version_label: "fin-scraper-${{ steps.format-time.outputs.replaced }}"
+          working-directory: server
           deployment_package: deploy.zip
 
       - name: Deployed!
