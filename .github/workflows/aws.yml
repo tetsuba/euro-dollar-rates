@@ -54,8 +54,7 @@ jobs:
           environment_name: "Finscraper-env"
           region: eu-west-2
           version_label: "fin-scraper-${{ steps.format-time.outputs.replaced }}"
-          working-directory: server
-          deployment_package: deploy.zip
+          deployment_package: ./server/deploy.zip
 
       - name: Deployed!
         run: echo App deployed to ELB
