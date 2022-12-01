@@ -6,7 +6,7 @@ on:
     paths-ignore:
       - 'client/*.md'
       - 'client/*.json'
-      - 'server'
+      - 'server/**'
       - '.github/workflows/server.yml'
 
 jobs:

@@ -7,7 +7,7 @@ on:
       - 'server/*.md'
       - 'server/*.json'
       - 'server/.prettierignore'
-      - 'client'
+      - 'client/**'
       - '.github/workflows/client.yml'
 
 jobs:
