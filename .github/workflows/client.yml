@@ -1,0 +1,30 @@
+name: Test Client
+
+on:
+  push:
+    branches-ignore: [ "master" ]
+
+jobs:
+  build:
+    name: Install and Test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ 16.x ]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Node setup
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install Client
+        working-directory: server
+        run: npm ci
+
+      - name: Test Client
+        working-directory: server
+        run: npm run test
