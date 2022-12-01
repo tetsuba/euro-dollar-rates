@@ -1,30 +1,41 @@
-# Fin Scraper
+# Fin Scraper Server
 
-Scraping data 
+Scraping data and providing an api to be served to the client.
 
+---
 
-
-### TESTING
-
-
-##### JEST
-Add these two properties to jest.config to create coverage report
-
-- "collectCoverage": true,
-- "coverageReporters": ["json", "html"],
+## Scripts
 
 
-### Circleci
-https://circleci.com/docs/configuration-reference
+Run server
+```
+ npm start
+```
+Run tests
+```
+npm run test
 
-### Heroku
+npm run test:cov
+```
 
-Deploying and building the production ready app on Heroku.
-Created a buildpack to support this build.
+Run development
+```
+npm run dev
+```
+---
+## Scraper
+Using [cheerio](https://cheerio.js.org/) to scrape data from a website
 
 
-Buildpack: https://github.com/tetsuba/subdir-heroku-buildpack
 
 
-## pre-commit
-npm husky
+
+---
+
+## API Documentation
+
+Using [swagger](https://swagger.io/) to document api.
+
+Run the server and got to http://localhost:3001/api-docs/ to see the api documentaion
+
+

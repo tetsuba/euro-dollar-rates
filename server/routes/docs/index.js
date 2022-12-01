@@ -21,7 +21,7 @@ const options = {
             },
         ],
     },
-    apis: [path.join(process.cwd(), 'server', 'routes/futures/index.js')], // files containing annotations as above
+    apis: [path.join(process.cwd(), 'routes/futures/index.js')], // files containing annotations as above
 }
 // TODO: fix file paths
 
