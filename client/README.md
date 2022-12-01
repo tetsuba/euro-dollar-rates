@@ -5,7 +5,7 @@
 An app that provides financial data
 
 ---
-###### This project was bootstrapped with Create React App and uses typescript
+###### This project was bootstrapped with Create React App
 
 ---
 
