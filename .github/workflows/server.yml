@@ -3,7 +3,12 @@ name: Test Server
 on:
   push:
     branches-ignore: [ "master" ]
-    paths: 'server/**' # Only changes in the server folder will trigger this job
+    paths-ignore:
+      - 'server/*.md'
+      - 'server/*.json'
+      - 'server/.prettierignore'
+      - 'client'
+      - '.github/workflows/client.yml'
 
 jobs:
   build:

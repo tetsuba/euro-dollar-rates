@@ -1,3 +1,5 @@
+[![Test Server](https://github.com/tetsuba/fin-scraper/actions/workflows/server.yml/badge.svg)](https://github.com/tetsuba/fin-scraper/actions/workflows/server.yml)
+
 # Fin Scraper Server
 
 Scraping data and providing an api to be served to the client.

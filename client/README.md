@@ -1,3 +1,5 @@
+[![Test Client](https://github.com/tetsuba/fin-scraper/actions/workflows/client.yml/badge.svg)](https://github.com/tetsuba/fin-scraper/actions/workflows/client.yml)
+
 # Fin Scraper Client
 
 An app that provides financial data
