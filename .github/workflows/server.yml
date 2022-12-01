@@ -3,6 +3,7 @@ name: Test Server
 on:
   push:
     branches-ignore: [ "master" ]
+    paths: 'server/**' # Only changes in the server folder will trigger this job
 
 jobs:
   build:

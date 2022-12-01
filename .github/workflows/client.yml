@@ -3,6 +3,7 @@ name: Test Client
 on:
   push:
     branches-ignore: [ "master" ]
+    paths: 'client/**' # Only changes in the client folder will trigger this job
 
 jobs:
   build:
