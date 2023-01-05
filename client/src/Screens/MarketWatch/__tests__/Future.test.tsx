@@ -4,6 +4,7 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import Future from '../Future'
 import 'jest-canvas-mock'
+import Wrapper from "../../../utils/Wrapper";
 
 jest.mock('axios')
 
@@ -19,6 +20,7 @@ jest.mock('chart.js', () => {
 })
 
 const mockData = {
+    status: 200,
     data: {
         list: [
             {
@@ -54,18 +56,20 @@ const mockData = {
 }
 
 describe('Future', () => {
-    // @ts-ignore
-    axios.get.mockReturnValueOnce(mockData)
 
-    const rendered = render(
-        <MemoryRouter
-            initialEntries={['', { pathname: '/market-watch/futures/ED' }]}
-        >
-            <Future />
-        </MemoryRouter>
-    )
+
 
     test('should render', async () => {
+        // @ts-ignore
+        axios.get.mockResolvedValueOnce(mockData)
+
+        const rendered = render(
+            <Wrapper pathname="/market-watch/futures/ED">
+                <Future />
+            </Wrapper>
+        )
+
+
         await waitFor(() => expect(screen.getByTestId('future-checkbox-list')))
         expect(rendered.asFragment()).toMatchSnapshot()
 
@@ -100,5 +104,16 @@ describe('Future', () => {
         const firstCheckBox = rendered.queryAllByTestId('checkbox-custom')[0]
         fireEvent.click(firstCheckBox)
         expect(firstCheckBox.getAttribute('data-checked')).toMatch('false')
+    })
+    test('should render an error', async () => {
+        // @ts-ignore
+        axios.get.mockRejectedValueOnce('error')
+
+        render(
+            <Wrapper pathname="/market-watch/futures/ED">
+                <Future />
+            </Wrapper>
+        )
+        await waitFor(() => expect(screen.getByTestId('error-screen')))
     })
 })
