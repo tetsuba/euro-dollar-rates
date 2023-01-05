@@ -25,6 +25,10 @@ export function mutateFuturesListByGroupingNames(
     return [...new Set<string>(j)]
 }
 
+export function filterFuturesList(list: string[], text: string) {
+    return list.filter((name: string) => name.startsWith(text))
+}
+
 // ***********************************************
 // FUTURE LIST - list of data of a specific future
 // ***********************************************

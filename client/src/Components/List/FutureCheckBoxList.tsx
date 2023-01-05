@@ -33,6 +33,5 @@ export default function FutureCheckBoxList({
             />
         )
     }
-
     return <List renderItem={renderLinkItem} list={list} partialKey="fcbl-" />
 }

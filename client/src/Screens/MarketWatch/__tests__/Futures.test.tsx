@@ -3,11 +3,13 @@ import {
     render,
     screen,
     waitForElementToBeRemoved,
-    fireEvent,
+    fireEvent, waitFor,
 } from '@testing-library/react'
-import { MemoryRouter } from 'react-router-dom'
+
 import Futures from '../Futures'
+import Wrapper from "../../../utils/Wrapper";
 import axios from 'axios'
+
 jest.mock('axios')
 
 const mockData = {
@@ -19,44 +21,41 @@ const mockData = {
     ],
 }
 
+
+
 describe('Futures', () => {
     test('should render a loading screen until api call is completed', async () => {
         // @ts-ignore
-        axios.get.mockReturnValueOnce({ data: mockData })
-
-        const rendered = render(
-            <MemoryRouter>
-                <Futures />
-            </MemoryRouter>
-        )
-
+        axios.get.mockResolvedValue({ data: mockData, status: 200 })
+        const rendered = render(<Wrapper pathname="/market-watch/futures"><Futures /></Wrapper>)
         expect(rendered.asFragment()).toMatchSnapshot()
         await waitForElementToBeRemoved(() => screen.getByText(/Loading.../i))
         expect(rendered.asFragment()).toMatchSnapshot()
     })
+    test('should render an error screen', async () => {
+        // @ts-ignore
+        axios.get.mockRejectedValueOnce()
+
+        render(
+            <Wrapper pathname="/market-watch/futures">
+                <Futures />
+            </Wrapper>
+        )
+        await waitFor(() => expect(screen.getByTestId('error-screen')))
+    })
 
     describe('Event onChange search futures', () => {
-        beforeEach(async () => {
+        test('should render a list and a group list of futures', async () => {
             // @ts-ignore
-            axios.get.mockReturnValueOnce({ data: mockData })
-            render(
-                <MemoryRouter>
-                    <Futures />
-                </MemoryRouter>
-            )
+            axios.get.mockResolvedValue({ data: mockData, status: 200 })
+            render(<Wrapper pathname="/market-watch/futures"><Futures /></Wrapper>)
 
-            await waitForElementToBeRemoved(() =>
-                screen.getByText(/Loading.../i)
-            )
+            await waitForElementToBeRemoved(() => screen.getByText(/Loading.../i))
             fireEvent.change(screen.getByTestId('search-input'), {
                 target: { value: 'E' },
             })
-        })
 
-        test('should render a list of futures', () => {
             expect(screen.queryAllByTestId('external-link')).toHaveLength(3)
-        })
-        test('should render a grouped list of futures', () => {
             expect(screen.queryAllByTestId('internal-link')).toHaveLength(1)
         })
     })

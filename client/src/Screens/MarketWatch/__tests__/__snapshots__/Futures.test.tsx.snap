@@ -36,9 +36,20 @@ exports[`Futures should render a loading screen until api call is completed 2`] 
           </a>
         </li>
         <li
+          class="breadcrumb-item"
+        >
+          <a
+            href="/market-watch"
+          >
+            market-watch
+          </a>
+        </li>
+        <li
           aria-current="page"
           class="breadcrumb-item active"
-        />
+        >
+          futures
+        </li>
       </ol>
     </nav>
   </div>
